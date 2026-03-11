@@ -99,6 +99,61 @@
   .nav-links a:hover { color: var(--orange); }
   .nav-links a:hover::after { width: 100%; }
 
+  /* ── NAV TOGGLE (HAMBURGER) ── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 1001;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--charcoal);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      flex-direction: column;
+      padding: 1.5rem 2rem;
+      gap: 1.2rem;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+  }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -106,7 +161,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 8rem 2rem 4rem;
+    padding: 8rem 2rem 5rem;
     position: relative;
     overflow: hidden;
     background: var(--white);
@@ -255,9 +310,10 @@
   /* ── SCROLL CUE ── */
   .scroll-cue {
     position: absolute;
-    bottom: 2.5rem;
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -265,6 +321,10 @@
     opacity: 0;
     animation: fadeIn 0.6s ease forwards;
     animation-delay: 1.8s;
+  }
+
+  @media (max-height: 700px) {
+    .scroll-cue { display: none; }
   }
 
   .scroll-cue span {
@@ -869,7 +929,6 @@
 
   @media (max-width: 768px) {
     .nav-inner { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
     .hero { padding: 6rem 1.5rem 4rem; }
     .hero-platforms { flex-direction: column; align-items: center; }
     .btn { width: 260px; justify-content: center; }
@@ -898,7 +957,10 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo"><img src="officiallogo.svg" alt="Adam Metwally" style="height: 36px; width: auto;"></a>
-    <ul class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#episodes">Episodes</a></li>
       <li><a href="#subscribe">Subscribe</a></li>
@@ -1090,7 +1152,7 @@
 <section class="pullquote">
   <div class="pullquote-inner">
     <div class="pullquote-mark reveal">&ldquo;</div>
-    <p class="pullquote-text reveal">"Health grounds you. Wealth frees you. Wisdom guides you. This podcast connects the dots."</p>
+    <p class="pullquote-text reveal">Health grounds you. Wealth frees you. Wisdom guides you. This podcast connects the dots.</p>
     <p class="pullquote-attr reveal">&mdash; Adam Metwally</p>
   </div>
 </section>
@@ -1232,6 +1294,22 @@
       parallaxTicking = true;
     }
   }, { passive: true });
+
+  // ── MOBILE NAV TOGGLE ──
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function() {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
 
   // ── SMOOTH ANCHOR SCROLLING ──
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {

@@ -258,12 +258,6 @@
   }
 
   .hero-podcast {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    color: var(--orange);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
     animation: clipReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
   }
 
@@ -326,7 +320,7 @@
   /* Scroll indicator */
   .scroll-cue {
     position: absolute;
-    bottom: 2.5rem;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -335,6 +329,10 @@
     gap: 0.6rem;
     opacity: 0;
     animation: fadeUp 0.8s ease 1.4s forwards;
+  }
+
+  @media (max-height: 700px) {
+    .scroll-cue { display: none; }
   }
 
   .scroll-cue span {
@@ -1062,7 +1060,7 @@
   </div>
 
   <div class="episodes-grid">
-    <a href="#" class="episode-card reveal">
+    <a href="https://open.spotify.com/show/2CDS3KOgOSwmKCvK6BWS8B" target="_blank" class="episode-card reveal">
       <span class="ep-num new-ep">NEW</span>
       <div class="ep-body">
         <div class="ep-title">The Wealth That Can't Be Taken From You</div>
@@ -1073,7 +1071,7 @@
       </div>
     </a>
 
-    <a href="#" class="episode-card reveal delay-1">
+    <a href="https://open.spotify.com/show/2CDS3KOgOSwmKCvK6BWS8B" target="_blank" class="episode-card reveal delay-1">
       <span class="ep-num">EP 49</span>
       <div class="ep-body">
         <div class="ep-title">Why Most People Optimise for the Wrong Things</div>
@@ -1084,7 +1082,7 @@
       </div>
     </a>
 
-    <a href="#" class="episode-card reveal delay-2">
+    <a href="https://open.spotify.com/show/2CDS3KOgOSwmKCvK6BWS8B" target="_blank" class="episode-card reveal delay-2">
       <span class="ep-num">EP 48</span>
       <div class="ep-body">
         <div class="ep-title">Building a Body That Matches Your Ambition</div>
@@ -1095,7 +1093,7 @@
       </div>
     </a>
 
-    <a href="#" class="episode-card reveal delay-3">
+    <a href="https://open.spotify.com/show/2CDS3KOgOSwmKCvK6BWS8B" target="_blank" class="episode-card reveal delay-3">
       <span class="ep-num">EP 47</span>
       <div class="ep-body">
         <div class="ep-title">The Compounding Effect of Small Decisions</div>
@@ -1106,7 +1104,7 @@
       </div>
     </a>
 
-    <a href="#" class="episode-card reveal delay-4">
+    <a href="https://open.spotify.com/show/2CDS3KOgOSwmKCvK6BWS8B" target="_blank" class="episode-card reveal delay-4">
       <span class="ep-num">EP 46</span>
       <div class="ep-body">
         <div class="ep-title">Sleep, Stress and the Science of Recovery</div>
